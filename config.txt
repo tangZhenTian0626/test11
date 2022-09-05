@@ -1,6 +1,6 @@
 {
 # 公众号配置
-# 公众号appId
+# 公众号appId1
 "app_id": "wxc24947fa928642a3",
 # 公众号appSecret
 "app_secret": "39c07aca022503412eab2607e5943620",
