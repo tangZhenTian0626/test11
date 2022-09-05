@@ -21,6 +21,20 @@ def get_access_token():
     # appSecret
     app_secret = config["app_secret"]
     print("app_secret="+app_secret)
+    url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}". \
+    format(app_id, app_secret)
+    resp = requests.get(url)
+    content = resp.json()
+    errcode = content.get("errcode")
+    print("content: {}".format(content))
+    if errcode in content:
+        errmsg = content.get("errmsg")
+        print("获取access_token失败：{}".format(errmsg))
+        raise ValueError("获取access_token失败：{}".format(errmsg))
+    else:
+        access_token = content.get("access_token")
+        expires_in = content.get("expires_in")
+
     post_url = ("https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={}&secret={}"
                 .format(app_id, app_secret))
     print(post_url)
